@@ -6,3 +6,4 @@ pyinstaller --windowed \
             --name "coffeegrindsize" \
             --hidden-import cmath \
             $GITHUB/coffeegrindsize/coffeegrindsize.py
+$GITHUB/coffeegrindsize/build_tools/fix_info_plist.py ./dist/coffeegrindsize.app/Contents/Info.plist
