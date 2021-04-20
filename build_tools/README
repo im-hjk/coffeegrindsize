@@ -115,13 +115,13 @@ NOTE: it is assumed that you already have python and pip installed as
 
   7) Test the generated executable:
 
-       cd %HOME%\coffeegrindsize_build\dist\"coffeegrindsize"
-       "coffeegrindsize.exe"
+       cd %HOME%\coffeegrindsize_build
+       dist\coffeegrindsize\coffeegrindsize.exe
 
   8) Run the WiX "heat" utility like this:
 
        cd %HOME%\coffeegrindsize_build
-       heat dir ".\dist\coffeegrindsize" -ag -sfrag -sreg -template product -out heat.wxs
+       heat dir dist\coffeegrindsize -ag -sfrag -sreg -template product -out heat.wxs
 
        Now you have a file %HOME%\coffeegrindsize_build\heat.wxs
 
@@ -135,7 +135,7 @@ NOTE: it is assumed that you already have python and pip installed as
 
  11) Run light (WiX tool):
 
-       light -b ".\dist\coffeegrindsize" -sice:ICE60 coffeegrindsize_*.wixobj
+       light -b dist\coffeegrindsize -sice:ICE60 coffeegrindsize_*.wixobj
 
  12) Test the installer:
 
