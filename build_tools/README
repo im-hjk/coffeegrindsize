@@ -1,0 +1,147 @@
+The build_tools directory contains scripts used for building Mac and
+Windows executables and packaging them in installers.
+
+This was contributed by Chris Satterlee, and questions may be directed
+to me at csatt1@gmail.com. This workflow was developed for my open
+source project https://github.com/csatt/IV_Swinger so it was pretty easy
+to port it to coffeegrindsize.
+
+Do NOT use this directory for running these tools. If you do that, then
+the output files might accidently get committed to the repo, and that is
+not what we want.
+
+--------------------------------------------------------------------------------
+Instructions for Mac build:
+
+  1) Install pyinstaller:
+
+       % pip install pyinstaller
+
+     If you already have pyinstaller installed, make sure you upgrade to
+     the current version. Fixes for Issues 3820 and 5175 are required. I
+     believe that 4.1 or higher is ok.
+
+  2) Install dmgbuild:
+
+       % pip install dmgbuild
+       % pip install biplist
+
+  3) Set environment variable $GITHUB to point to the parent directory
+     of your clone of the coffeegrindsize GitHub repo, e.g.:
+
+       % export GITHUB="$HOME/GitHub"
+
+     Or to make it permanent (assuming you use bash):
+
+       % echo 'export GITHUB="$HOME/GitHub"' >> ~/.bash_profile
+
+  4) Update the version string in $GITHUB/coffeegrindsize/build_tools/version.txt
+
+  5) Complete all testing using straight Python (this assumes that
+     you have installed all of the required Python packages):
+
+       % cd $GITHUB/coffeegrindsize
+       % python coffeegrindsize.py
+
+  6) Create a build folder/directory somewhere NOT under $GITHUB, e.g.:
+
+       % mkdir $HOME/coffeegrindsize_build
+
+  7) Run pyinstaller script in the build folder:
+
+       % cd $HOME/coffeegrindsize_build
+       % $GITHUB/coffeegrindsize/build_tools/mac_run_pyi
+
+     NOTE: Unfortunately, this generates many scary, but harmless
+           warnings. As long as the next step works, you're ok
+
+  8) Test the generated executable:
+
+       % cd $HOME/coffeegrindsize_build
+       % open dist/coffeegrindsize.app
+
+  9) Build the DMG with dmgbuild:
+
+       % cd $HOME/coffeegrindsize_build
+       % $GITHUB/coffeegrindsize/build_tools/mac_build_dmg
+
+ 10) Test the DMG:
+
+       % open *.dmg
+
+       Follow instructions to install
+
+ 11) Test the installed app by launching from Applications folder
+
+--------------------------------------------------------------------------------
+Instructions for Windows build:
+
+NOTE: it is assumed that you already have python and pip installed as
+      well as all of the python packages required to run coffeegrindsize.py
+      using straight Python
+
+  1) Install WiX, pyinstaller, BeautifulSoup4, and lxml:
+
+       http://wixtoolset.org/releases/ (install latest)
+         -> add %WIX%bin to your %path%
+       pip install pyinstaller
+       pip install beautifulsoup4
+       pip install lxml
+
+  2) Set environment variable %GITHUB% to point to the parent directory
+     of your clone of the coffeegrindsize GitHub repo, e.g.:
+
+       set GITHUB=%HOME%\Documents\GitHub
+       setx GITHUB %HOME%\Documents\GitHub
+
+  3) Update the version string in %GITHUB%\coffeegrindsize\build_tools\version.txt
+
+  4) Complete all testing using straight Python:
+
+       cd %GITHUB%\coffeegrindsize
+       python coffeegrindsize.py
+
+  5) Create a build folder/directory somewhere NOT under %GITHUB%, e.g.:
+
+       mkdir %HOME%\coffeegrindsize_build
+
+  6) Run the run_pyi.bat script in that folder:
+
+       cd %HOME%\coffeegrindsize_build
+       %GITHUB%\coffeegrindsize\build_tools\run_pyi.bat
+
+     NOTE: Unfortunately, this generates many scary, but harmless
+           warnings. As long as the next step works, you're ok
+
+  7) Test the generated executable:
+
+       cd %HOME%\coffeegrindsize_build\dist\"coffeegrindsize"
+       "coffeegrindsize.exe"
+
+  8) Run the WiX "heat" utility like this:
+
+       cd %HOME%\coffeegrindsize_build
+       heat dir ".\dist\coffeegrindsize" -ag -sfrag -sreg -template product -out heat.wxs
+
+       Now you have a file %HOME%\coffeegrindsize_build\heat.wxs
+
+  9) Run the fix_heat_wxs.py script:
+
+       python %GITHUB%\coffeegrindsize\build_tools\fix_heat_wxs.py heat.wxs
+
+ 10) Run candle (WiX tool):
+
+       candle coffeegrindsize_*.wxs
+
+ 11) Run light (WiX tool):
+
+       light -b ".\dist\coffeegrindsize" -sice:ICE60 coffeegrindsize_*.wixobj
+
+ 12) Test the installer:
+
+       msiexec /i coffeegrindsize_*.msi /l*v coffeegrindsize.log
+     OR
+       Find it with Windows Explorer and double-click it
+
+ 13) Test the installed app by launching from the Start Menu
+
