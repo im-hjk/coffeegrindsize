@@ -3,11 +3,11 @@ To open the application simply launch the .app file located at /App/dist/coffeeg
 #간편사용설명서
 본 설명서는 https://github.com/Coffee-Grind-Distribution/coffee-grind-distribution 에서 Instructions 부분을 참고해서 제작했습니다.
 
-* 1. 흰색 A4용지를 준비한다. (없으면 아무 흰 종이와 자 혹은 동전를 준비한다)
-* 2. 커피 그라인더에 최소한의 원두 (1 ~ 2알)을 투입해 커피가루를 만든다.
-* 3. 미리 준비해둔 종이에 커피가루를 털어내고, 젓가락등을 사용해서 최대한 가루가 겹치지 않고 고르게 분포되도록 해준다.(예시 그림 : https://i.imgur.com/A1C2RPA.jpg
-* 4. A4용지라면 용지 전체가 잘 나오도록, 아니면 종이 위에 자/동전을 같이 올리고 그림자가 지지 않게 바로 위에서 수직으로 사진을 찍는다.
-* 5. coffeegrindsize app 을 실행하고 다음 순서대로 진행한다.
+1. 흰색 A4용지를 준비한다. (없으면 아무 흰 종이와 자 혹은 동전를 준비한다)
+2. 커피 그라인더에 최소한의 원두 (1 ~ 2알)을 투입해 커피가루를 만든다.
+3. 미리 준비해둔 종이에 커피가루를 털어내고, 젓가락등을 사용해서 최대한 가루가 겹치지 않고 고르게 분포되도록 해준다.(예시 그림 : https://i.imgur.com/A1C2RPA.jpg
+4. A4용지라면 용지 전체가 잘 나오도록, 아니면 종이 위에 자/동전을 같이 올리고 그림자가 지지 않게 바로 위에서 수직으로 사진을 찍는다.
+5. coffeegrindsize app 을 실행하고 다음 순서대로 진행한다.
 	- 5-1.  [Open image] 버튼을 누르고 방금 찍은 사진을 선택한다.
 	- 5-2.  [Select Reference Object]을 누르고 A4용지를 사용했다면 용지의 한쪽 변을, 자나 동전을 사용한다면 자에서 1cm 눈금만큼 아니면 동전의 지름을 선으로 그려준다.
 	- 5-3.  좌측에 [Reference Physical Size]을 입력하는 부분에 
