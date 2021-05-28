@@ -1,6 +1,6 @@
 To open the application simply launch the .app file located at /App/dist/coffeegrindsize.app
 
-#간편사용설명서
+# 간편사용설명서
 본 설명서는 https://github.com/Coffee-Grind-Distribution/coffee-grind-distribution 에서 Instructions 부분을 참고해서 제작했습니다.
 
 1. 흰색 A4용지를 준비한다. (없으면 아무 흰 종이와 자 혹은 동전를 준비한다)
